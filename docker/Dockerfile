@@ -45,6 +45,11 @@ RUN /bin/bash -c "source /opt/ros/humble/setup.bash && \
     cd ~/ros2_ws && \
     colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release"
 
+# Install apps to test xserver
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt install -y x11-apps
+
 # Source ROS2 and workspace setup scripts
 RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 RUN echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc
